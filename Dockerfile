@@ -7,7 +7,7 @@ ARG ek_version=6.2.1
 RUN apk add --quiet --no-progress --no-cache nodejs wget \
  && adduser -D elasticsearch
 
-USER elasticsearch
+# USER elasticsearch
 
 WORKDIR /home/elasticsearch
 
@@ -16,6 +16,9 @@ ENV ES_TMPDIR=/home/elasticsearch/elasticsearch.tmp
 RUN wget -q -O - https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ek_version}.tar.gz \
  |  tar -zx \
  && mv elasticsearch-${ek_version} elasticsearch \
+ && cd elasticsearch \
+ && sh bin/elasticsearch-plugin install ingest-geoip \
+ && cd - \
  && mkdir -p ${ES_TMPDIR} \
  && wget -q -O - https://artifacts.elastic.co/downloads/kibana/kibana-${ek_version}-linux-x86_64.tar.gz \
  |  tar -zx \
