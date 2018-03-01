@@ -2,7 +2,7 @@ FROM openjdk:jre-alpine
 
 LABEL maintainer "nshou <nshou@coronocoya.net>"
 
-ARG ek_version=6.2.1
+ARG ek_version=6.2.2
 
 RUN apk add --quiet --no-progress --no-cache nodejs wget \
  && adduser -D elasticsearch -g root
