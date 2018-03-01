@@ -5,9 +5,9 @@ LABEL maintainer "nshou <nshou@coronocoya.net>"
 ARG ek_version=6.2.1
 
 RUN apk add --quiet --no-progress --no-cache nodejs wget \
- && adduser -D elasticsearch
+ && adduser -D elasticsearch -g root
 
-# USER elasticsearch
+USER elasticsearch
 
 WORKDIR /home/elasticsearch
 
